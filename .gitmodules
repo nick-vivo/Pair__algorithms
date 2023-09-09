@@ -1,6 +1,3 @@
-[submodule "modules/STL"]
-	path = modules/STL
-	url = git@github.com:nick-vivo/STL.git
 [submodule "modules/googletest"]
 	path = modules/googletest
 	url = git@github.com:google/googletest.git
