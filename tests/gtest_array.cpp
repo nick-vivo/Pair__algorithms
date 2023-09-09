@@ -17,4 +17,5 @@ TEST(ARRAY, ALL)
     ASSERT_EQ(arr[1], 1);
     ASSERT_EQ(arr[2], 2);
     ASSERT_EQ(arr[3], 3);
+    ASSERT_EQ(arr.size(), 4);
 }

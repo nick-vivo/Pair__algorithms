@@ -28,6 +28,8 @@ public:
         delete[] _data;
     }
 
+    Array& operator=(const Array& other) = delete;
+
     inline T_data& operator[](t_size index)
     {
         if (index >= this->_size || index < 0)
@@ -36,8 +38,11 @@ public:
         }
         return *(_data + index);
     }
-
-
+    
+    inline t_size size() const noexcept
+    {
+        return this->_size;
+    }
 };
 
 #endif
