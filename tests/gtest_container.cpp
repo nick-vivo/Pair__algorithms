@@ -54,3 +54,14 @@ TEST(ALL, ALL_IN_ALL)
     
     ASSERT_ANY_THROW(cont.add( pair<string, int>("SEVEN", 5) ));
 }
+
+TEST(VERIFICATION, FIRST)
+{
+    Container_Pair<string, int> cont(3);
+    
+    cont.add( pair<string, int>("First", 1) );
+    ASSERT_ANY_THROW( cont.add( pair<string, int>("First", 2) ) );
+    cont.add( pair<string, int>("Second", 1) );
+    ASSERT_EQ(cont["First"], 1);
+    ASSERT_EQ(cont["Second"], 1);
+}

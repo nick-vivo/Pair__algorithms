@@ -1,6 +1,8 @@
 #include <pair.h>
 #include <array.h>
+
 #include <string>
+#include <iostream>
 
 template<class T_key, class T_value>
 class Container_Pair
@@ -38,12 +40,27 @@ public:
 
     void add(const pair<T_key, T_value>& for_add)
     {
-        if (_count_size + 1> _data.size())
+        if (_count_size + 1 > _data.size())
             throw std::runtime_error("Your size is over");
+        if ( !verification(for_add) )
+            throw std::runtime_error("Pointed key been");
         _data[_count_size] = for_add;
         ++_count_size;
     }
 
+private:
+
+    bool verification(pair<T_key, T_value> pai)
+    {
+        for(t_size i = 0; i < _data.size(); ++i)
+        {
+            if ( _data[i].key() == pai.key() )
+                return false;
+        }
+        return true;
+    }
+
+public:
     void rm(const T_key& search)
     {
         t_size save_index = -1;
@@ -62,4 +79,14 @@ public:
             swap(this->_data[i], this->_data[i + 1]);
         --_count_size;
     }
+
+    std::ostream& print(std::ostream& stream)
+    {
+        for(t_size i = 0; i < _data.size(); ++i)
+        {
+            stream << "\nindex: " << i << "\tkey: " << _data[i].ckey() << "\tvalue: " << _data[i].cvalue();
+        }
+        return stream;
+    }
+    
 };

@@ -8,7 +8,9 @@ int main()
     
     cont.add( pair<std::string, int> ("123", 1) );
 
-    std::cout << cont["123"];
+    //std::cout << cont.verification(pair<std::string, int> ("123", 2));
+
+    cont.print(std::cout);
 
     return 1;
 }
