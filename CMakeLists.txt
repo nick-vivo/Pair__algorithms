@@ -19,8 +19,9 @@ set(CONTAINER_PAIR_LIB include/container_pair.h src/container_pair.cpp)
 add_library(container_pair ${ARRAY_LIB})
 target_link_libraries(container_pair array pair)
 
-option(TEST "Enable testing" OFF)
 
+
+option(TEST "Enable testing" OFF)
 if (TEST)
     #tests
     add_subdirectory(modules/googletest)
@@ -44,5 +45,6 @@ if (TEST)
     add_executable(gtest_container ${TEST_CONTAINER_EXE})
     target_include_directories(gtest_container PUBLIC ${TESTS_INCLUDE})
     target_link_libraries(gtest_container gmock gmock_main gtest gtest_main container_pair)
+
 endif()
     
