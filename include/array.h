@@ -11,7 +11,7 @@ class Array
     t_size _size;
     T_data* _data;
 public:
-    Array(): _data(nullptr), _size(nullptr) {}
+    Array(): _data(nullptr), _size(0) {}
 
     Array(const Array& other): _size( other._size ), _data( new T_data[ _size ] ) 
     {
@@ -23,7 +23,7 @@ public:
 
     Array(t_size size): _size(size), _data( new T_data[ _size ] ) {}
 
-    ~Array()
+    virtual ~Array()
     {
         delete[] _data;
     }
