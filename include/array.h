@@ -11,7 +11,7 @@ class Array
     t_size _size;
     T_data* _data;
 public:
-    Array() = delete;
+    Array(): _data(nullptr), _size(nullptr) {}
 
     Array(const Array& other): _size( other._size ), _data( new T_data[ _size ] ) 
     {
@@ -28,7 +28,19 @@ public:
         delete[] _data;
     }
 
-    Array& operator=(const Array& other) = delete;
+    Array& operator=(const Array& other)
+    {
+        if (this->_data)
+            delete[] _data;
+        this->_size = other._size;
+
+        this->_data = new T_data[this->_size];
+        
+        for ( t_size i = 0; i < this->_size; ++i )
+        {
+            this->_data[i] = other._data[i]; 
+        }
+    }
 
     inline T_data& operator[](t_size index)
     {

@@ -19,29 +19,30 @@ set(CONTAINER_PAIR_LIB include/container_pair.h src/container_pair.cpp)
 add_library(container_pair ${ARRAY_LIB})
 target_link_libraries(container_pair array pair)
 
-#tests
-add_subdirectory(modules/googletest)
-set(TESTS_INCLUDE modules/googletest/googlemock/include modules/googletest/googletest/include)
+option(TEST "Enable testing" OFF)
 
-#TEST_PAIR
-set(TEST_PAIR_EXE tests/gtest_pair.cpp)
-add_executable(gtest_pair ${TEST_PAIR_EXE})
-target_include_directories(gtest_pair PUBLIC ${TESTS_INCLUDE})
-target_link_libraries(gtest_pair gmock gmock_main gtest gtest_main pair)
+if (TEST)
+    #tests
+    add_subdirectory(modules/googletest)
+    set(TESTS_INCLUDE modules/googletest/googlemock/include modules/googletest/googletest/include)
 
-#TEST_ARRAY
-set(TEST_ARRAY_EXE tests/gtest_array.cpp)
-add_executable(gtest_array ${TEST_ARRAY_EXE})
-target_include_directories(gtest_array PUBLIC ${TESTS_INCLUDE})
-target_link_libraries(gtest_array gmock gmock_main gtest gtest_main array)
+    #TEST_PAIR
+    set(TEST_PAIR_EXE tests/gtest_pair.cpp)
+    add_executable(gtest_pair ${TEST_PAIR_EXE})
+    target_include_directories(gtest_pair PUBLIC ${TESTS_INCLUDE})
+    target_link_libraries(gtest_pair gmock gmock_main gtest gtest_main pair)
+
+    #TEST_ARRAY
+    set(TEST_ARRAY_EXE tests/gtest_array.cpp)
+    add_executable(gtest_array ${TEST_ARRAY_EXE})
+    target_include_directories(gtest_array PUBLIC ${TESTS_INCLUDE})
+    target_link_libraries(gtest_array gmock gmock_main gtest gtest_main array)
 
 
-#TEST_CONTAINER
-set(TEST_CONTAINER_EXE tests/gtest_container.cpp)
-add_executable(gtest_container ${TEST_CONTAINER_EXE})
-target_include_directories(gtest_container PUBLIC ${TESTS_INCLUDE})
-target_link_libraries(gtest_container gmock gmock_main gtest gtest_main container_pair)
-
-#main
-add_executable(main main.cpp)
-target_link_libraries(main pair container_pair)
+    #TEST_CONTAINER
+    set(TEST_CONTAINER_EXE tests/gtest_container.cpp)
+    add_executable(gtest_container ${TEST_CONTAINER_EXE})
+    target_include_directories(gtest_container PUBLIC ${TESTS_INCLUDE})
+    target_link_libraries(gtest_container gmock gmock_main gtest gtest_main container_pair)
+endif()
+    
