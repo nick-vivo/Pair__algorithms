@@ -10,6 +10,7 @@ class Container_Pair
 
 Array< pair<T_key, T_value> > _data;
 t_size _count_size;
+
 public:
     Container_Pair() = delete;
     Container_Pair(const Container_Pair& other) = delete;
