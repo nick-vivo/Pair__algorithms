@@ -15,19 +15,15 @@ add_library(array ${ARRAY_LIB})
 target_link_libraries(array)
 
 #container
+add_subdirectory(modules/STL)
 set(CONTAINER_PAIR_LIB include/container_pair.h src/container_pair.cpp)
-add_library(container_pair ${ARRAY_LIB})
-target_link_libraries(container_pair array pair)
-
-#list
-set(LIST_PAIR_LIB include/list.h src/list.cc)
-add_library(list ${LIST_PAIR_LIB})
-target_link_libraries(list)
+add_library(container_pair ${CONTAINER_PAIR_LIB_LIB})
+target_link_libraries(container_pair pair list)
 
 #main.cpp
 add_executable(main main.cpp)
-target_include_directories(main PUBLIC include)
-target_link_libraries(main container_pair)
+target_include_directories(main PUBLIC include ./modules/STL/include)
+target_link_libraries(main list)
 
 
 
